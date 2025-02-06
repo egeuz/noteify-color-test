@@ -1,6 +1,6 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  basePath: "/noteify-color-test",
+  basePath: "",
   output: "export"
 };
 
