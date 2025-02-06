@@ -1,95 +1,44 @@
-import Image from "next/image";
-import styles from "./page.module.css";
+"use client"
+import { useState } from 'react';
+import './page.css'
 
 export default function Home() {
+  const [hue, setHue] = useState(0)
   return (
-    <div className={styles.page}>
-      <main className={styles.main}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol>
-          <li>
-            Get started by editing <code>src/app/page.js</code>.
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
-
-        <div className={styles.ctas}>
-          <a
-            className={styles.primary}
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className={styles.logo}
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-            className={styles.secondary}
-          >
-            Read our docs
-          </a>
+    <main>
+      <div className="screen-wrapper" style={{ filter: `hue-rotate(${hue}deg)` }}>
+        <div id="light-mode">
+          <h2>Light Mode</h2>
+          <div className="screens">
+            <div className="screen home">
+              <h3>Home</h3>
+              <img src="/home_light.png" alt="home screen, light mode" />
+            </div>
+            <div className="screen summary">
+              <h3>Summary</h3>
+              <img src="/summary_light.png" alt="summary screen, light mode" />
+            </div>
+          </div>
         </div>
-      </main>
-      <footer className={styles.footer}>
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
-    </div>
+        <div id="dark-mode">
+          <h2>Dark Mode</h2>
+          <div className="screens">
+            <div className="screen home">
+              <h3>Home</h3>
+              <img src="/home_dark.png" alt="home screen, dark mode" />
+            </div>
+            <div className="screen summary">
+              <h3>Summary</h3>
+              <img src="/summary_dark.png" alt="summary screen, dark mode" />
+            </div>
+          </div>
+        </div>
+      </div>
+      <div id="controls">
+        <h4>App Hue</h4>
+        <input id="hue-slider" type="range" min="0" max="360" step="1" value={hue} onChange={(e) => setHue(e.target.value)} />
+        <h4>{hue}</h4>
+      </div>
+    </main>
   );
 }
